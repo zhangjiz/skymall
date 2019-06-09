@@ -29,7 +29,7 @@ public class JDBCProperties {
     public static final String PACKAGE_PATH_MAPPER = packageConvertPath(ProjectConstant.MAPPER_PACKAGE);//生成POJO视图的存放路径
     public static final String PACKAGE_PATH_VUE_LIST = packageConvertPath(ProjectConstant.VUE_PACKAGE);//生成VueTable的存放路径
 
-    public static final String AUTHOR = "许宝予";//@author
+    public static final String AUTHOR = "xiaodong";//@author
     public static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static String tableNameConvertLowerCamel(String tableName) {

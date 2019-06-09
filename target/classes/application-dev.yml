@@ -1,0 +1,39 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    # 填写你数据库的url、登录名、密码和数据库名
+    url: jdbc:mysql://192.168.31.106:3306/skymall?useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+#    url: jdbc:mysql://47.102.220.79:3306/skymall?useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    # 使用阿里的Druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+  #格式化日期
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#微信支付配置文件
+wx:
+  pay:
+    appID: wxbdd47ded08ff0796
+    mchID: 1513337541
+    Key: 1cb0cc24c55389076d76be2e0c53c3b1
+    httpConnectTimeoutMs: 1000
+    httpReadTimeoutMs: 8000
+    notifyUrl: www.baidu.com
+#    客户：
+#    appID: wxc96ca0989f7b82c2
+#    mchID: 1533226301
+#    Key: 1cb0cc24c55389076d76be2e0c53c3b1
+#    httpConnectTimeoutMs: 1000
+#    httpReadTimeoutMs: 8000
+#    notifyUrl: www.baidu.com
+#文件上传的配置
+upload:
+  mapping: images/ #文件上传映射地址
+  address: C:/images/ #文件上传映射绝对地址
+  returnUrl: http://192.168.31.106:8082/ #本地
+#  returnUrl: http://47.102.220.79:8089/ #服务器地址

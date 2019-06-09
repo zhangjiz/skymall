@@ -1,0 +1,9 @@
+# JavaMailSender 邮件发送的配置
+spring:
+  mail:
+    host: smtp.163.com
+    username: xubaoyu0612@163.com
+    password: sss533521
+    default-encoding: UTF-8
+
+

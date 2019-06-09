@@ -1,13 +1,14 @@
 package com.zcf.world.service;
 
-import com.zcf.world.pojo.Item;
-import com.zcf.world.mapper.ItemMapper;
-import tk.mybatis.mapper.entity.Example;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import com.zcf.world.common.exception.CommonException;
 import com.zcf.world.common.exception.ExceptionEnum;
+import com.zcf.world.mapper.ItemMapper;
+import com.zcf.world.pojo.Item;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import tk.mybatis.mapper.entity.Example;
+
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,8 @@ public class ItemService{
 
     @Resource
     private ItemMapper itemmapper;
-
+    @Resource
+    private RedisTemplate redisTemplate;
     /**
      * 新增一条数据
      *
@@ -107,11 +109,17 @@ public class ItemService{
      * @param itemTitle
      * @return
      */
-    public List<Item> getitem(String itemTitle) {
+    public List<Item> getitem(Integer userid,String itemTitle) {
         Example example=new Example(Item.class);
         example.createCriteria().andLike("itemTitle","%" + itemTitle + "%");
         List<Item>list=this.itemmapper.selectByExample(example);
+        redisTemplate.opsForList().leftPush("searchHistory"+userid,itemTitle);
         return list;
+    }
 
+
+    public List<Item> searchHistory(Integer userid) {
+        List<Item> list = (List<Item>)redisTemplate.opsForList().range("searchHistory"+userid,0,5);
+        return list;
     }
 }

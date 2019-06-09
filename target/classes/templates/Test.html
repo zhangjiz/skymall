@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/webjars/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+<button onclick="send()">发送一个数据</button>
+</body>
+<script>
+
+    function send() {
+        $.ajax({
+            type: "DELETE", //请求方式 post
+            dataType: 'json', //数据类型 json
+            contentType: "application/json; charset=utf-8",
+            url: "/userAddress/6", // 请求地址
+            success: function (data, textStatus) {
+                console.log(textStatus)
+                console.log(data)
+            },
+            error: function (jqXHR) {
+                debugger;
+                console.log(">>>>>>>>>>>>"+jqXHR.statusText)
+                console.log("<<<<<<<<<<<<"+jqXHR.responseText )
+            }
+        });
+    }
+
+</script>
+</html>

@@ -25,7 +25,7 @@ public class CodeGenerator {
      * 主程序入口
      */
     public static void main(String[] args) {
-        genCode("user_address");
+        genCode("item");
 //        //genCodeByCustomModelName("输入表名","输入自定义Model名称");
 //        List<ResultType> name = getTableName("move_order");
 //        name.forEach(item->System.out.println(item.getName()));

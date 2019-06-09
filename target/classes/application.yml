@@ -1,0 +1,26 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: xubaoyu0612@163.com
+    password: sss533521
+    default-encoding: UTF-8
+  profiles:
+    active: dev,druid,redis #配置所需的环境。
+#:mybatis
+mybatis:
+  type-aliases-package: com.zcf.world.pojo
+  mapper-locations: classpath:mapper/*.xml
+  #开启mybatis自动转化为驼峰标识
+  configuration:
+    map-underscore-to-camel-case: true
+#:分页插件
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  reasonable: true
+  params:
+    count: countSql
+logging:
+  level:
+    com.zcf.world.mapper: debug #:打印SQL语句
+    io.swagger.models.parameters.AbstractSerializableParameter: error #:为了解决swagger日志无端的报错

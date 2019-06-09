@@ -88,9 +88,19 @@ public class ItemController {
 
     @ApiOperation(value = "根据关键字模糊查询商品")
     @GetMapping(value = "itemTitle", produces = {"application/json;charset=UTF-8"})
-    @ApiImplicitParams(value = {@ApiImplicitParam(name = "itemTitle", value = "商品标题", dataType = "String"),
-    })
-    public ResponseEntity<List<Item>> getitem(String itemTitle) {
-        return ResponseEntity.ok(this.itemService.getitem(itemTitle));
+    @ApiImplicitParams(value = {
+           @ApiImplicitParam(name = "userid", value = "用户id", dataType = "Integer"),
+            @ApiImplicitParam(name = "itemTitle", value = "商品标题", dataType = "String"),
+        })
+    public ResponseEntity<List<Item>> getitem(Integer userid,String itemTitle) {
+        return ResponseEntity.ok(this.itemService.getitem(userid,itemTitle));
     }
+
+    @ApiOperation(value = "根据用户id获取首页查询历史")
+    @GetMapping(value = "searchHistory", produces = {"application/json;charset=UTF-8"})
+    @ApiImplicitParam(name = "userid", value = "用户id", dataType = "Integer")
+    public ResponseEntity<List<Item>> searchHistory(Integer userid) {
+        return ResponseEntity.ok(this.itemService.searchHistory(userid));
+    }
+
 }
